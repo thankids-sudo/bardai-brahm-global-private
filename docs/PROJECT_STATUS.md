@@ -58,3 +58,15 @@ Owner installs the APK and confirms launch, language persistence and emblem disp
 
 Next concrete step: owner chooses backend (A or D in `docs/BACKEND_OPTIONS.md`); then build the
 API/sign-in adapter on top of the tested database layer.
+
+## Milestone M3: person, household and family links (database layer, 25 Nov 2026)
+
+| Item | State |
+|---|---|
+| Migration 0003: relative records with owner and consent basis; parent/spouse links incl. adoption, step, guardian, remarriage; confirmation/dispute; claim invitations; households with history; residence history; reviewed merges | Implemented |
+| Family tree view: both parental branches, derived siblings/in-laws, masking of living relatives, minors and unconfirmed links | Implemented |
+| M3 pass criteria: no duplicate counting, unconfirmed links marked, private relatives do not leak, merge conflicts require review, invalid cycles blocked | **Tested: 77 new checks; 180/180 total pass locally** |
+| Mutation check | Cycle, privacy, conflict acknowledgement and one-household rules each detected when removed. Invitation reuse also blocked by a second independent check (record already claimed), by design |
+| Bug found by tests and fixed | Merge-conflict recording failed on any differing field (array append) |
+| App screens for family tree, households, claims | Not started: depend on backend choice (M2) |
+| Relationship finder, family photos, PDF export | Deferred (brief: later) |

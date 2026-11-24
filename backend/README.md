@@ -41,6 +41,35 @@ apply ──► pending ──► approved ──► (suspended ⇄ approved)
 - Appeals are decided by a global administrator who is neither the appellant nor the reviewer.
 - A global administrator can disable an account (with a reason), which blocks every action at once.
 
+## Family records (migration 0003, M3)
+
+- **Ownership:** every person record has one owner: the account that claimed it, or else the
+  account that entered it. Only the owner edits it. Entering a relative records who entered it
+  and the consent basis (`assisted_with_consent` for living adults, `guardian` for minors,
+  `deceased_record` for the deceased).
+- **Links:** parent→child (biological, adoptive, step, guardian, foster, unknown; label father/
+  mother/parent) and spouse (with start/end years, so remarriage works). Siblings, half-siblings,
+  grandparents and in-laws are derived from these.
+- **Confirmation:** a link touching someone else's record is `pending` until that owner accepts
+  or disputes it. When a person claims their record, links others recorded about them return to
+  `pending` for their own acceptance.
+- **Blocked:** self-links, cycles (anyone becoming their own ancestor), parent born after child,
+  more than two biological parents, duplicate links.
+- **Family view:** start only from your own record or one you manage, up to 4 steps, both
+  parental branches. Living relatives are shown as "private" (no name, code or year) unless you
+  own the record, or they have their own account, allow relatives to see them, and every link on
+  the way is accepted. Living minors are private except to their owner. Pending links are visible
+  only to the two parties. The directory never exposes relationships.
+- **Claiming:** the owner of a living adult's record can issue a one-time invitation (valid 14
+  days, only its hash stored). Accounts that already have a record cannot claim another, and a
+  record that already belongs to an account cannot be taken over (two independent checks).
+- **Households:** time-bounded membership; a person is in at most one current household.
+  **Residences:** full history with exactly one current residence.
+- **Merges:** never automatic. Requested by the owner of one record; reviewed by a global admin or
+  the requester's chapter secretary who owns neither record; differing fields must be explicitly
+  acknowledged; records belonging to accounts cannot be merged away; merges that would create a
+  cycle or a third biological parent are refused.
+
 ## Layout
 
 ```text
@@ -61,4 +90,5 @@ Never point `run_tests.sh` at staging or production. CI runs it on every change 
 
 ## Not done yet
 API server and sign-in integration (depends on the backend choice), the admin web portal,
-country/state admin scopes, household/relationship tables (M3), survey (M4).
+country/state admin scopes, account holders joining a household from their own account,
+relationship finder and PDF export, survey (M4).
