@@ -7,20 +7,24 @@ Updated: 25 November 2026 (IST)
 | Item | State |
 |---|---|
 | Android project (Kotlin 2.1.0, Compose BOM 2024.12.01, AGP 8.7.3, Gradle 8.11.1 wrapper, compile/target SDK 35, min SDK 26) | Implemented |
-| Gujarati/English switch, persisted via AppCompat per-app locales (system setting on Android 13+) | Implemented, **not yet run on a device** |
+| Gujarati/English switch, persisted via AppCompat per-app locales (system setting on Android 13+) | Implemented; builds. **Not yet run on a device** |
 | Welcome, Home, My Family, Chapters, Events, Survey, Profile previews | Implemented |
 | Preview labelling on every screen; no counts, no login, survey button disabled | Implemented |
 | Loading / empty / error states (Chapters, Events) | Implemented |
 | No INTERNET permission, backups disabled | Implemented |
-| Unit tests: language mapping, string parity, placeholders, Gujarati coverage, no-network guard, no invented records | Written, **not yet executed** |
-| GitHub Actions: wrapper validation, tests, lint, debug APK artifact (14-day retention), manual trigger | Written, **not yet run** |
+| Unit tests: language mapping, string parity, placeholders, Gujarati coverage, no-network guard, no invented records | Passed in CI run 45469303135 |
+| GitHub Actions: wrapper validation, tests, lint, debug APK artifact (14-day retention), manual trigger | Passed: run 45469303135 (commit 5787f61), APK artifact `bardai-brahm-global-debug-1`, ~10 MB |
 | Supplied emblem | **Blocked**: logo file not provided in this session; placeholder shown |
-| Push to GitHub | **Blocked**: write access to the repository not granted to this session |
+| Push to GitHub | Done: branch `feature/m1-preview` (no PR yet: `main` is empty) |
+
+### Verified
+Clean GitHub runner, 25 Nov 2026: `testDebugUnitTest`, `lintDebug` (abortOnError) and
+`assembleDebug` all BUILD SUCCESSFUL.
+https://github.com/thankids-sudo/bardai-brahm-global-private/actions/runs/45469303135
 
 ### Not verified
-The workspace had no Android SDK and no access to Google/Maven repositories, so the project
-was not compiled locally. The first CI run is the first real compile. Fix any failure there
-before calling M1 complete.
+Install/launch on a device or emulator, the language switch persisting after restart, and
+emblem cropping (the emblem is still missing). These are M1 acceptance checks for the owner's phone.
 
 ### Proposed (not owner decisions)
 - Application ID `org.bardaibrahmglobal.app` (becomes permanent on Play; confirm before release).
@@ -35,5 +39,5 @@ Release signing workflow (only after signing is configured), backend, admin web,
 Repository visibility was **public** on 25 Nov 2026 despite its name. Owner to decide.
 
 ## Next concrete step
-Owner grants repository write access and attaches the emblem → push `feature/m1-preview`,
-run CI, install the APK on a device, then open M2 (backend comparison + identity slice).
+Owner installs the APK and confirms launch and language persistence; owner attaches the
+emblem → install it via branding script. Then M2: backend comparison and the identity slice.
