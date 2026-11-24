@@ -40,3 +40,13 @@ Repository visibility was **public** on 25 Nov 2026 despite its name. Owner to d
 
 ## Next concrete step
 Owner installs the APK and confirms launch, language persistence and emblem display. Then M2: backend comparison and the identity slice.
+
+## Milestone M2: identity and membership (started 25 Nov 2026)
+
+| Item | State |
+|---|---|
+| `main` fast-forwarded to M1 (`aef4625`) | Done |
+| Backend comparison (`docs/BACKEND_OPTIONS.md`) | Written; **awaiting owner decision** on budget/option |
+| Email verification, applications, chapter routing, admin bootstrap, secretary approval | Not started (blocked on backend choice) |
+
+Next concrete step: owner chooses option A (Supabase Pro, ~₹37k/yr) or D (own VPS, within ₹20k).
