@@ -14,7 +14,7 @@ Updated: 25 November 2026 (IST)
 | No INTERNET permission, backups disabled | Implemented |
 | Unit tests: language mapping, string parity, placeholders, Gujarati coverage, no-network guard, no invented records | Passed in CI run 45469303135 |
 | GitHub Actions: wrapper validation, tests, lint, debug APK artifact (14-day retention), manual trigger | Passed: run 45469303135 (commit 5787f61), APK artifact `bardai-brahm-global-debug-1`, ~10 MB |
-| Supplied emblem | **Blocked**: logo file not provided in this session; placeholder shown |
+| Supplied emblem | Installed from owner's `1001606313.jpg` (master `branding/logo-master.jpg`); full emblem on Welcome/Profile, launcher icon uncropped. Lettering illegible at icon size: compact icon pending owner review |
 | Push to GitHub | Done: branch `feature/m1-preview` (no PR yet: `main` is empty) |
 
 ### Verified
@@ -24,7 +24,7 @@ https://github.com/thankids-sudo/bardai-brahm-global-private/actions/runs/454693
 
 ### Not verified
 Install/launch on a device or emulator, the language switch persisting after restart, and
-emblem cropping (the emblem is still missing). These are M1 acceptance checks for the owner's phone.
+how the emblem looks on a real screen. These are M1 acceptance checks for the owner's phone.
 
 ### Proposed (not owner decisions)
 - Application ID `org.bardaibrahmglobal.app` (becomes permanent on Play; confirm before release).
@@ -39,5 +39,4 @@ Release signing workflow (only after signing is configured), backend, admin web,
 Repository visibility was **public** on 25 Nov 2026 despite its name. Owner to decide.
 
 ## Next concrete step
-Owner installs the APK and confirms launch and language persistence; owner attaches the
-emblem → install it via branding script. Then M2: backend comparison and the identity slice.
+Owner installs the APK and confirms launch, language persistence and emblem display. Then M2: backend comparison and the identity slice.

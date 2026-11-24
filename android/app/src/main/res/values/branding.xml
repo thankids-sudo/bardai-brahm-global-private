@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Set to false by branding/generate_android_assets.py when the supplied logo is installed. -->
-    <bool name="emblem_is_placeholder">true</bool>
+    <bool name="emblem_is_placeholder">false</bool>
 </resources>
