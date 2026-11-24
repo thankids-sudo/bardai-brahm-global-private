@@ -70,3 +70,14 @@ API/sign-in adapter on top of the tested database layer.
 | Bug found by tests and fixed | Merge-conflict recording failed on any differing field (array append) |
 | App screens for family tree, households, claims | Not started: depend on backend choice (M2) |
 | Relationship finder, family photos, PDF export | Deferred (brief: later) |
+
+## Milestone M4: survey and safe dashboard (database layer, 25 Nov 2026)
+
+| Item | State |
+|---|---|
+| Migration 0004: versioned bilingual individual/household questionnaires (v1 seeded), answers with declined/unanswered kept distinct, income bands per currency and year, survey consent, response deletion | Implemented |
+| Statistics API: overview of separate measures; breakdowns with small-cell (<5) and complementary suppression; country filters refused when either side is small; member vs planning-user scopes | Implemented |
+| M4 pass criteria: household totals reconcile; missing answers do not become zeros; currency/reporting year retained; filters do not reveal small groups | **Tested: 56 new checks; 236/236 total pass locally** |
+| Mutation check | Small-cell, complementary, filter-complement, missing-answer, currency-pooling and band-validation rules each detected when removed |
+| **Owner decision needed** | INR 2026 income bands (below ₹3 L, 3–6 L, 6–12 L, 12–24 L, 24 L+) are proposed; bands for other currencies need an agreed method |
+| App survey screens and dashboard UI | Not started: depend on backend choice (M2) |

@@ -70,6 +70,31 @@ apply ──► pending ──► approved ──► (suspended ⇄ approved)
   acknowledged; records belonging to accounts cannot be merged away; merges that would create a
   cycle or a third biological parent are refused.
 
+## Survey and statistics (migration 0004, M4)
+
+- **Questionnaires:** separate individual and household surveys, versioned, every prompt and
+  option in Gujarati and English. Version 1 is seeded. A new version starts new responses;
+  statistics never mix versions.
+- **Answers:** optional unless marked required (only household size is). "Prefer not to
+  disclose" is stored as *declined*; an unanswered question has no row. Neither becomes zero.
+  No Aadhaar, bank, exact-income or DNA questions.
+- **Income:** a band within a currency and reporting year. Only INR 2026 bands exist, marked
+  **PROPOSED, pending owner approval**. Other currencies cannot record income until a method is
+  agreed. Currencies are never pooled.
+- **Households:** one response per household per version, so income is counted once.
+- **Consent:** approved members only, after giving survey consent. Withdrawing consent removes
+  their responses from every statistic; members can delete their own responses.
+- **Statistics:** counts only, no row-level data.
+  - Members: member country, age group, education, work status, household size.
+  - Planning users (planning analyst on the global chapter, or a global admin) also see income,
+    housing and support needs.
+  - Counts from 1 to 4 are hidden (setting `min_cell_size`, default 5). If only one cell is
+    hidden, the next smallest is hidden too, so it cannot be worked out by subtraction.
+  - A country filter is refused when the country, or the rest of the world, is below 5.
+  - Each breakdown reports *declined* and *not answered* separately, and a denominator.
+  - The overview keeps accounts, approved members, person records, households, surveyed
+    individuals, surveyed households and pending duplicate reviews as separate measures.
+
 ## Layout
 
 ```text
@@ -91,4 +116,5 @@ Never point `run_tests.sh` at staging or production. CI runs it on every change 
 ## Not done yet
 API server and sign-in integration (depends on the backend choice), the admin web portal,
 country/state admin scopes, account holders joining a household from their own account,
-relationship finder and PDF export, survey (M4).
+relationship finder and PDF export, survey entry on behalf of others by survey volunteers,
+publishing new questionnaire versions from the admin portal.
