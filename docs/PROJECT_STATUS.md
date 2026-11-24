@@ -51,7 +51,9 @@ Owner installs the APK and confirms launch, language persistence and emblem disp
 | Database layer, backend-neutral PostgreSQL 16 (`backend/db/migrations/0001`): accounts, persons with immutable member codes, chapters, scoped roles, applications, memberships, consents, append-only audit | Implemented |
 | One-time global admin bootstrap (operator-only, verified email required) | Implemented, tested |
 | Security tests (`backend/db/tests`): 54 checks incl. all M2 pass criteria (unverified/pending/suspended blocked from directory; secretary limited to own chapter; no self-promotion; approvals audited) | **54/54 passed locally on PostgreSQL 16**; mutation check confirmed failures are detected |
-| CI workflow `backend.yml` (postgres:16 service) | Written; see run link in commit history |
+| CI workflow `backend.yml` (postgres:16 service) | Passed: run 45473538413 (54 tests) |
+| Migration 0002: correction/resubmission, withdrawal, one appeal per rejection (decided by an uninvolved global admin; original reviewer barred after upheld appeal), secretary review queue, duplicate suggestions (never auto-merged), chapter list with global intake routing, account disable | Implemented |
+| Tests now 102 (each test file runs on its own fresh database) | **102/102 passed locally**; mutation check detected removed rules |
 | API server, sign-in integration, app screens for apply/review | Not started: depends on backend choice |
 
 Next concrete step: owner chooses backend (A or D in `docs/BACKEND_OPTIONS.md`); then build the

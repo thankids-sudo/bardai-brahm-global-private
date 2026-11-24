@@ -22,12 +22,31 @@ nothing here is deployed and no real data exists.
 - The directory lists only approved, living members who have opted in, returns no contact
   fields, needs 2+ characters, escapes wildcards and caps results at 50.
 
+## Membership workflow (migrations 0001–0002)
+
+```text
+apply ──► pending ──► approved ──► (suspended ⇄ approved)
+             │  ▲
+             │  └── resubmit ◄── correction_requested
+             ├──► rejected ──► appeal ──► upheld: back to pending, original reviewer barred
+             │                        └─► dismissed: stays rejected
+             └──► withdrawn (applicant may apply again)
+```
+
+- Secretaries see a review queue for their own chapters only, with a count of possible
+  duplicate records (same name, birth year ±1). These are suggestions for human review;
+  records are never merged automatically.
+- Applicants with no local chapter choose the **global intake** chapter. No intake secretary
+  has been appointed; such applications wait until the owner appoints one.
+- Appeals are decided by a global administrator who is neither the appellant nor the reviewer.
+- A global administrator can disable an account (with a reason), which blocks every action at once.
+
 ## Layout
 
 ```text
 db/migrations/   numbered SQL migrations, applied in order
-db/tests/        security tests (synthetic data only)
-db/run_tests.sh  creates a throwaway database, applies migrations, runs tests, drops it
+db/tests/        security tests (synthetic data only); _harness.sql/_report.sql are shared
+db/run_tests.sh  per test file: fresh throwaway database, apply migrations, run, drop
 ```
 
 ## Running the tests
@@ -42,5 +61,4 @@ Never point `run_tests.sh` at staging or production. CI runs it on every change 
 
 ## Not done yet
 API server and sign-in integration (depends on the backend choice), the admin web portal,
-correction resubmission and appeals flow, duplicate-account review, country/state admin
-scopes, household/relationship tables (M3), survey (M4).
+country/state admin scopes, household/relationship tables (M3), survey (M4).
