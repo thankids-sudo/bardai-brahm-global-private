@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AppCompat parent is required so AppCompatDelegate can apply per-app languages. -->
+    <style name="Theme.BardaiBrahm" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/warm_white</item>
+        <item name="android:statusBarColor">@color/navy</item>
+        <item name="android:navigationBarColor">@color/navy</item>
+    </style>
+</resources>

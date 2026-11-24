@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TEMPORARY PLACEHOLDER. Not the Foundation emblem.
+     Replaced by branding/generate_android_assets.py once branding/logo-master.png is supplied. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+    <path
+        android:fillColor="#FF1B2A4A"
+        android:pathData="M120,4a116,116 0,1 1,0 232a116,116 0,1 1,0 -232z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFC9A227"
+        android:strokeWidth="6"
+        android:pathData="M120,18a102,102 0,1 1,0 204a102,102 0,1 1,0 -204z" />
+    <path
+        android:fillColor="#FFFFF8EC"
+        android:pathData="M120,34a86,86 0,1 1,0 172a86,86 0,1 1,0 -172z" />
+</vector>

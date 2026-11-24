@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bardai Brahm Global</string>
+    <string name="foundation_name">Bardai Brahm Global Foundation</string>
+    <string name="foundation_name_alt">બરડાઈ બ્રહ્મ ગ્લોબલ ફાઉન્ડેશન</string>
+    <string name="emblem_description">Foundation emblem</string>
+    <string name="emblem_pending">Official emblem will appear here</string>
+
+    <!-- Preview labelling -->
+    <string name="preview_banner">Preview build: sample screens only. No live data, no sign-in.</string>
+    <string name="preview_tag">Preview</string>
+
+    <!-- Welcome -->
+    <string name="welcome_body">A worldwide home for the Bardai Brahm community: membership, family links, chapters, events and community surveys.</string>
+    <string name="welcome_status">The Foundation is being established. This is an early preview of the app.</string>
+    <string name="welcome_continue">Continue</string>
+    <string name="choose_language">Choose language</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_family">My Family</string>
+    <string name="nav_chapters">Chapters</string>
+    <string name="nav_events">Events</string>
+    <string name="nav_survey">Survey</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Namaste</string>
+    <string name="home_intro">Explore what the app will offer. Features below are previews and are not yet working.</string>
+    <string name="home_module_membership">Membership</string>
+    <string name="home_module_membership_desc">Apply to your residence chapter; the chapter secretary reviews and approves.</string>
+    <string name="home_module_family">Family tree</string>
+    <string name="home_module_family_desc">Record parents, grandparents on both sides, spouse, children and siblings.</string>
+    <string name="home_module_directory">Member directory</string>
+    <string name="home_module_directory_desc">Verified members will be able to find each other worldwide, showing only details each person allows.</string>
+    <string name="home_module_survey">Community survey</string>
+    <string name="home_module_survey_desc">Education, occupation, residence and household needs, with optional answers.</string>
+    <string name="home_module_events">Events</string>
+    <string name="home_module_events_desc">Chapter events, announcements and meeting links in your time zone.</string>
+    <string name="home_stats_title">Community statistics</string>
+    <string name="home_stats_none">Registration has not opened yet, so there are no counts to show.</string>
+    <string name="open_survey_preview">Open survey preview</string>
+
+    <!-- Family -->
+    <string name="family_title">My Family</string>
+    <string name="family_intro">This layout shows how a family tree will look. Boxes are empty because no records exist yet.</string>
+    <string name="family_you">You</string>
+    <string name="family_father">Father</string>
+    <string name="family_mother">Mother</string>
+    <string name="family_paternal_grandfather">Paternal grandfather</string>
+    <string name="family_paternal_grandmother">Paternal grandmother</string>
+    <string name="family_maternal_grandfather">Maternal grandfather</string>
+    <string name="family_maternal_grandmother">Maternal grandmother</string>
+    <string name="family_spouse">Spouse</string>
+    <string name="family_children">Children</string>
+    <string name="family_siblings">Siblings</string>
+    <string name="family_paternal_side">Father\'s side</string>
+    <string name="family_maternal_side">Mother\'s side</string>
+    <string name="family_not_added">Not added</string>
+    <string name="family_privacy_note">Living relatives\' details will stay private by default. A relationship you add for another adult stays unconfirmed until they accept it.</string>
+
+    <!-- Chapters -->
+    <string name="chapters_title">Chapters</string>
+    <string name="chapters_intro">Chapters are organised from global level down to your city. Levels can be skipped where they do not apply.</string>
+    <string name="chapter_level_global">Global</string>
+    <string name="chapter_level_country">Country</string>
+    <string name="chapter_level_state">State / Province</string>
+    <string name="chapter_level_district">District / Region</string>
+    <string name="chapter_level_city">City / Local</string>
+    <string name="chapters_empty">No chapters have been created yet.</string>
+
+    <!-- Events -->
+    <string name="events_title">Events</string>
+    <string name="events_empty">No events have been announced yet.</string>
+    <string name="events_planned">Planned: calendar in your time zone, chapter filters, RSVP, reminders and event photos.</string>
+
+    <!-- Survey -->
+    <string name="survey_title">Community Survey</string>
+    <string name="survey_intro">The survey has two parts so household income is never counted twice. Every sensitive question will offer \"Prefer not to disclose\".</string>
+    <string name="survey_individual">Individual questions</string>
+    <string name="survey_individual_desc">Year of birth, education, skills, work, ancestral village, present residence, volunteering interests.</string>
+    <string name="survey_household">Household questions</string>
+    <string name="survey_household_desc">Household size, earning members, optional income band, housing, support needs.</string>
+    <string name="survey_never_asked">Never asked: Aadhaar, bank details, exact income or DNA.</string>
+    <string name="survey_start_disabled">Survey opens after secure sign-in is ready</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_not_signed_in">Sign-in is not available in this preview.</string>
+    <string name="profile_language">App language</string>
+    <string name="language_english">English</string>
+    <string name="language_gujarati">ગુજરાતી</string>
+    <string name="profile_about">About</string>
+    <string name="profile_about_body">The Bardai Brahm Global Foundation is being established to connect Bardai Brahm families around the world.</string>
+    <string name="profile_privacy">Privacy</string>
+    <string name="profile_privacy_body">This preview does not collect, store or send any personal information.</string>
+    <string name="profile_version">Version %1$s</string>
+
+    <!-- Generic states -->
+    <string name="state_loading">Loading…</string>
+    <string name="state_error">Something went wrong.</string>
+    <string name="state_retry">Try again</string>
+</resources>

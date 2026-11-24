@@ -1,0 +1,30 @@
+# Gradle / Android
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Signing material and secrets: never commit
+*.jks
+*.keystore
+keystore.properties
+*.p12
+*.pem
+.env
+.env.*
+google-services.json
+service-account*.json
+
+# Real member data must never enter git
+*.sql.gz
+*.dump
+exports/
+
+.DS_Store
+__pycache__/

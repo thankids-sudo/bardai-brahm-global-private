@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">બરડાઈ બ્રહ્મ ગ્લોબલ</string>
+    <string name="foundation_name">બરડાઈ બ્રહ્મ ગ્લોબલ ફાઉન્ડેશન</string>
+    <string name="foundation_name_alt">Bardai Brahm Global Foundation</string>
+    <string name="emblem_description">ફાઉન્ડેશનનું પ્રતીક</string>
+    <string name="emblem_pending">અહીં સત્તાવાર પ્રતીક દેખાશે</string>
+
+    <string name="preview_banner">પ્રિવ્યૂ આવૃત્તિ: ફક્ત નમૂનાની સ્ક્રીન. કોઈ લાઇવ માહિતી નથી, સાઇન-ઇન નથી.</string>
+    <string name="preview_tag">પ્રિવ્યૂ</string>
+
+    <string name="welcome_body">વિશ્વભરના બરડાઈ બ્રહ્મ સમાજ માટેનું એક ઘર: સભ્યપદ, કુટુંબ સંબંધો, શાખાઓ, કાર્યક્રમો અને સમાજ સર્વેક્ષણ.</string>
+    <string name="welcome_status">ફાઉન્ડેશનની સ્થાપના થઈ રહી છે. આ એપનું પ્રારંભિક પ્રિવ્યૂ છે.</string>
+    <string name="welcome_continue">આગળ વધો</string>
+    <string name="choose_language">ભાષા પસંદ કરો</string>
+
+    <string name="nav_home">મુખ્ય</string>
+    <string name="nav_family">મારું કુટુંબ</string>
+    <string name="nav_chapters">શાખાઓ</string>
+    <string name="nav_events">કાર્યક્રમો</string>
+    <string name="nav_survey">સર્વેક્ષણ</string>
+    <string name="nav_profile">પ્રોફાઇલ</string>
+
+    <string name="home_greeting">નમસ્તે</string>
+    <string name="home_intro">એપમાં શું મળશે તે જુઓ. નીચેની સુવિધાઓ પ્રિવ્યૂ છે અને હજી કાર્યરત નથી.</string>
+    <string name="home_module_membership">સભ્યપદ</string>
+    <string name="home_module_membership_desc">તમારા નિવાસની શાખામાં અરજી કરો; શાખાના મંત્રી ચકાસીને મંજૂરી આપશે.</string>
+    <string name="home_module_family">કુટુંબ વૃક્ષ</string>
+    <string name="home_module_family_desc">માતા-પિતા, બંને પક્ષના દાદા-દાદી/નાના-નાની, જીવનસાથી, સંતાનો અને ભાઈ-બહેનની નોંધ.</string>
+    <string name="home_module_directory">સભ્ય નિર્દેશિકા</string>
+    <string name="home_module_directory_desc">ચકાસાયેલ સભ્યો વિશ્વભરમાં એકબીજાને શોધી શકશે; દરેક વ્યક્તિ મંજૂરી આપે તેટલી જ વિગતો દેખાશે.</string>
+    <string name="home_module_survey">સમાજ સર્વેક્ષણ</string>
+    <string name="home_module_survey_desc">શિક્ષણ, વ્યવસાય, નિવાસ અને કુટુંબની જરૂરિયાતો; જવાબ આપવો વૈકલ્પિક.</string>
+    <string name="home_module_events">કાર્યક્રમો</string>
+    <string name="home_module_events_desc">શાખાના કાર્યક્રમો, જાહેરાતો અને મીટિંગ લિંક, તમારા સમય ઝોન મુજબ.</string>
+    <string name="home_stats_title">સમાજના આંકડા</string>
+    <string name="home_stats_none">નોંધણી હજી શરૂ થઈ નથી, તેથી કોઈ સંખ્યા દર્શાવવાની નથી.</string>
+    <string name="open_survey_preview">સર્વેક્ષણ પ્રિવ્યૂ ખોલો</string>
+
+    <string name="family_title">મારું કુટુંબ</string>
+    <string name="family_intro">કુટુંબ વૃક્ષ કેવું દેખાશે તે આ રચના બતાવે છે. હજી કોઈ નોંધ ન હોવાથી ખાનાં ખાલી છે.</string>
+    <string name="family_you">તમે</string>
+    <string name="family_father">પિતા</string>
+    <string name="family_mother">માતા</string>
+    <string name="family_paternal_grandfather">દાદા</string>
+    <string name="family_paternal_grandmother">દાદી</string>
+    <string name="family_maternal_grandfather">નાના</string>
+    <string name="family_maternal_grandmother">નાની</string>
+    <string name="family_spouse">જીવનસાથી</string>
+    <string name="family_children">સંતાનો</string>
+    <string name="family_siblings">ભાઈ-બહેન</string>
+    <string name="family_paternal_side">પિતૃ પક્ષ</string>
+    <string name="family_maternal_side">માતૃ પક્ષ</string>
+    <string name="family_not_added">ઉમેર્યું નથી</string>
+    <string name="family_privacy_note">જીવિત સંબંધીઓની વિગતો મૂળભૂત રીતે ખાનગી રહેશે. બીજા પુખ્ત વ્યક્તિ માટે ઉમેરેલો સંબંધ, તેઓ સ્વીકારે ત્યાં સુધી અપુષ્ટ રહેશે.</string>
+
+    <string name="chapters_title">શાખાઓ</string>
+    <string name="chapters_intro">શાખાઓ વૈશ્વિક સ્તરથી તમારા શહેર સુધી ગોઠવાયેલી છે. જ્યાં લાગુ ન પડે ત્યાં સ્તર છોડી શકાય.</string>
+    <string name="chapter_level_global">વૈશ્વિક</string>
+    <string name="chapter_level_country">દેશ</string>
+    <string name="chapter_level_state">રાજ્ય / પ્રાંત</string>
+    <string name="chapter_level_district">જિલ્લો / પ્રદેશ</string>
+    <string name="chapter_level_city">શહેર / સ્થાનિક</string>
+    <string name="chapters_empty">હજી કોઈ શાખા બનાવવામાં આવી નથી.</string>
+
+    <string name="events_title">કાર્યક્રમો</string>
+    <string name="events_empty">હજી કોઈ કાર્યક્રમની જાહેરાત થઈ નથી.</string>
+    <string name="events_planned">આયોજિત: તમારા સમય ઝોનમાં કેલેન્ડર, શાખા ફિલ્ટર, હાજરી નોંધ (RSVP), રિમાઇન્ડર અને કાર્યક્રમના ફોટા.</string>
+
+    <string name="survey_title">સમાજ સર્વેક્ષણ</string>
+    <string name="survey_intro">કુટુંબની આવક બે વાર ન ગણાય તે માટે સર્વેક્ષણના બે ભાગ છે. દરેક સંવેદનશીલ પ્રશ્નમાં \"જણાવવું નથી\" વિકલ્પ રહેશે.</string>
+    <string name="survey_individual">વ્યક્તિગત પ્રશ્નો</string>
+    <string name="survey_individual_desc">જન્મ વર્ષ, શિક્ષણ, કૌશલ્ય, વ્યવસાય, મૂળ ગામ, હાલનું નિવાસ, સેવા રુચિ.</string>
+    <string name="survey_household">કુટુંબના પ્રશ્નો</string>
+    <string name="survey_household_desc">કુટુંબનું કદ, કમાતા સભ્યો, વૈકલ્પિક આવક શ્રેણી, રહેઠાણ, જરૂરી સહાય.</string>
+    <string name="survey_never_asked">ક્યારેય પૂછાશે નહીં: આધાર, બેંક વિગતો, ચોક્કસ આવક કે DNA.</string>
+    <string name="survey_start_disabled">સુરક્ષિત સાઇન-ઇન તૈયાર થયા પછી સર્વેક્ષણ શરૂ થશે</string>
+
+    <string name="profile_title">પ્રોફાઇલ</string>
+    <string name="profile_not_signed_in">આ પ્રિવ્યૂમાં સાઇન-ઇન ઉપલબ્ધ નથી.</string>
+    <string name="profile_language">એપની ભાષા</string>
+    <string name="language_english">English</string>
+    <string name="language_gujarati">ગુજરાતી</string>
+    <string name="profile_about">પરિચય</string>
+    <string name="profile_about_body">વિશ્વભરના બરડાઈ બ્રહ્મ કુટુંબોને જોડવા માટે બરડાઈ બ્રહ્મ ગ્લોબલ ફાઉન્ડેશનની સ્થાપના થઈ રહી છે.</string>
+    <string name="profile_privacy">ગોપનીયતા</string>
+    <string name="profile_privacy_body">આ પ્રિવ્યૂ કોઈ વ્યક્તિગત માહિતી એકત્ર, સંગ્રહ કે મોકલતું નથી.</string>
+    <string name="profile_version">આવૃત્તિ %1$s</string>
+
+    <string name="state_loading">લોડ થઈ રહ્યું છે…</string>
+    <string name="state_error">કંઈક ખોટું થયું.</string>
+    <string name="state_retry">ફરી પ્રયાસ કરો</string>
+</resources>
