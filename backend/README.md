@@ -95,6 +95,25 @@ apply ──► pending ──► approved ──► (suspended ⇄ approved)
   - The overview keeps accounts, approved members, person records, households, surveyed
     individuals, surveyed households and pending duplicate reviews as separate measures.
 
+## Directory, events and photos (migration 0005, M5)
+
+- **Contact details:** released one member at a time, only to approved members, only the fields
+  that member consented to (email and phone are separate choices, effective immediately). Each
+  release is logged (which fields, never the values) and limited per day (`contact_reveals_per_day`,
+  default 20). Searches are limited per hour (`directory_searches_per_hour`, default 60).
+- **Events:** created and managed by an admin or secretary of exactly that chapter. Times are
+  entered in the organiser's local time and IANA zone; listings return event-local and
+  viewer-local times using PostgreSQL's time zone rules (daylight-saving aware). Local times
+  that are skipped by a clock change are refused. Online links must be https.
+- **RSVP:** approved members worldwide; capacity counts guests; over capacity is waitlisted and
+  promoted in order when places free up. Participant names and attendance are visible only to
+  the organising chapter.
+- **Announcements:** bilingual, chapter-scoped, removable by that chapter or a global admin.
+- **Photos:** only an admin of the event's chapter registers photos, already compressed
+  (JPEG/WebP, ≤ 2 MB, ≤ 2560 px). Storage keys are checked against path traversal; the API
+  layer issues short-lived signed URLs. Members can report a photo; the chapter admin or a
+  global admin removes it with a reason, which resolves the reports.
+
 ## Layout
 
 ```text
@@ -117,4 +136,5 @@ Never point `run_tests.sh` at staging or production. CI runs it on every change 
 API server and sign-in integration (depends on the backend choice), the admin web portal,
 country/state admin scopes, account holders joining a household from their own account,
 relationship finder and PDF export, survey entry on behalf of others by survey volunteers,
-publishing new questionnaire versions from the admin portal.
+publishing new questionnaire versions from the admin portal, event reminders (notification
+service), moderated chat and built-in video (after pilot, per brief).

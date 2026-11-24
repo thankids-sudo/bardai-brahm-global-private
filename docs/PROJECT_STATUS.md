@@ -81,3 +81,18 @@ API/sign-in adapter on top of the tested database layer.
 | Mutation check | Small-cell, complementary, filter-complement, missing-answer, currency-pooling and band-validation rules each detected when removed |
 | **Owner decision needed** | INR 2026 income bands (below ₹3 L, 3–6 L, 6–12 L, 12–24 L, 24 L+) are proposed; bands for other currencies need an agreed method |
 | App survey screens and dashboard UI | Not started: depend on backend choice (M2) |
+
+## Milestone M5: directory and chapter events (database layer, 25 Nov 2026)
+
+| Item | State |
+|---|---|
+| Migration 0005: consent-gated contact release with logging and rate limits; search rate limit; timezone-aware events; RSVP with capacity and waitlist; attendance; bilingual announcements; photo metadata with scoped upload, reporting and removal | Implemented |
+| M5 pass criteria: contact choices enforced server-side; time zone conversion correct (incl. London and New York daylight-saving changes); upload permissions and removal work; chapter roles scoped | **Tested: 71 new checks; 307/307 total pass locally** |
+| Mutation check | Email consent, viewer time zone, upload scope, event scope, contact limit, capacity and clock-change rules each detected when removed |
+| Security bug found by tests and fixed | Photo storage keys accepted `../` path traversal |
+| Event reminders, signed photo URLs, image compression | Belong to the API/app layer: depend on backend choice |
+
+## Summary: database layer for M2–M5 complete
+All five migrations and 307 tests are on branch `feature/m2-backend-options`. Every remaining
+item (sign-in, API server, app and admin screens, notifications, storage) needs the owner's
+backend decision (`docs/BACKEND_OPTIONS.md`).
