@@ -47,6 +47,12 @@ Owner installs the APK and confirms launch, language persistence and emblem disp
 |---|---|
 | `main` fast-forwarded to M1 (`aef4625`) | Done |
 | Backend comparison (`docs/BACKEND_OPTIONS.md`) | Written; **awaiting owner decision** on budget/option |
-| Email verification, applications, chapter routing, admin bootstrap, secretary approval | Not started (blocked on backend choice) |
+| Owner decision on backend | **Deferred by owner** (25 Nov 2026) |
+| Database layer, backend-neutral PostgreSQL 16 (`backend/db/migrations/0001`): accounts, persons with immutable member codes, chapters, scoped roles, applications, memberships, consents, append-only audit | Implemented |
+| One-time global admin bootstrap (operator-only, verified email required) | Implemented, tested |
+| Security tests (`backend/db/tests`): 54 checks incl. all M2 pass criteria (unverified/pending/suspended blocked from directory; secretary limited to own chapter; no self-promotion; approvals audited) | **54/54 passed locally on PostgreSQL 16**; mutation check confirmed failures are detected |
+| CI workflow `backend.yml` (postgres:16 service) | Written; see run link in commit history |
+| API server, sign-in integration, app screens for apply/review | Not started: depends on backend choice |
 
-Next concrete step: owner chooses option A (Supabase Pro, ~₹37k/yr) or D (own VPS, within ₹20k).
+Next concrete step: owner chooses backend (A or D in `docs/BACKEND_OPTIONS.md`); then build the
+API/sign-in adapter on top of the tested database layer.
