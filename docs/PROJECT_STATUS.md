@@ -109,3 +109,15 @@ backend decision (`docs/BACKEND_OPTIONS.md`).
 | Owner checklist | `docs/SUPABASE_SETUP.md` |
 | **Blocked on owner** | Supabase account + Pro plan + Mumbai project; GitHub `production` environment and secrets; domain and email provider for custom SMTP |
 | Android sign-in / apply / approve screens | Next slice |
+
+## App: membership sign-up and review (25 Nov 2026, branch `feature/app-membership`)
+
+| Item | State |
+|---|---|
+| Migration 0007: `api.my_application`, `api.my_roles` (own data only) | Implemented; SQL tests added |
+| Android: sign-up / sign-in / email-confirmation link / resend; apply to a chapter with consent; correction and resubmission; withdraw; secretary review queue (approve, ask for correction, reject with reason); sign-out | Implemented (Profile tab), Gujarati and English |
+| Session security: access token in memory only; refresh token encrypted with an Android Keystore AES-GCM key; automatic refresh and one retry; failed refresh signs out | Implemented |
+| Backend address and publishable key from build settings only; without them the app stays in offline preview | Implemented |
+| Unit tests (scripted server): headers, error mapping, refresh/retry, sign-out on revoked token, no calls when unconfigured, email-link tokens, form rules | Written |
+| Live test: the app's own client code against a local Supabase in CI (sign-up, confirmation gate, admin bootstrap, apply, correction, resubmit, approve, refresh-token restore, sign-out, refusals) | Written; see CI |
+| Not yet on a phone with a real backend | Needs the owner's Supabase project and the two build secrets |

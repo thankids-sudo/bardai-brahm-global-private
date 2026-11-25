@@ -3,9 +3,9 @@ name: Supabase stack tests
 on:
   push:
     branches: [main, "feature/**"]
-    paths: ["supabase/**", "backend/**", ".github/workflows/supabase.yml"]
+    paths: ["supabase/**", "backend/**", "android/**", ".github/workflows/supabase.yml"]
   pull_request:
-    paths: ["supabase/**", "backend/**", ".github/workflows/supabase.yml"]
+    paths: ["supabase/**", "backend/**", "android/**", ".github/workflows/supabase.yml"]
   workflow_dispatch:
 
 # Runs a throwaway local Supabase inside the runner. No secrets, no connection to any real project.
@@ -44,6 +44,23 @@ jobs:
 
       - name: End-to-end sign-up, sign-in and API checks over HTTP
         run: bash backend/e2e/supabase_smoke.sh
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Android app client against the local Supabase (live flow test)
+        working-directory: android
+        run: |
+          eval "$(supabase status -o env 2>/dev/null)"
+          export BBG_LIVE_SUPABASE_URL="$API_URL"
+          export BBG_LIVE_SUPABASE_KEY="${PUBLISHABLE_KEY:-$ANON_KEY}"
+          export BBG_LIVE_DB_URL="jdbc:postgresql://127.0.0.1:54322/postgres?user=postgres&password=postgres"
+          ./gradlew --no-daemon testDebugUnitTest --tests "org.bardaibrahmglobal.app.LiveSupabaseFlowTest"
+          # Fail if the test was skipped instead of run.
+          grep -q 'tests="1" skipped="0" failures="0" errors="0"' app/build/test-results/testDebugUnitTest/TEST-org.bardaibrahmglobal.app.LiveSupabaseFlowTest.xml
 
       - name: Stop
         if: always()

@@ -3,6 +3,7 @@ package org.bardaibrahmglobal.app
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
 import kotlinx.coroutines.runBlocking
+import org.bardaibrahmglobal.app.data.remote.BackendConfig
 import org.bardaibrahmglobal.app.preview.PreviewChapterRepository
 import org.bardaibrahmglobal.app.preview.PreviewEventRepository
 import org.junit.Assert.assertEquals
@@ -12,8 +13,8 @@ import org.junit.Test
 import org.w3c.dom.Element
 
 /**
- * Guards for M1 acceptance: both languages are complete, and the preview build
- * cannot reach the network or present invented records as live data.
+ * Guards: both languages are complete; the app asks for no permission beyond internet;
+ * the backend must be https; preview screens present no invented records as live data.
  * Unit tests run with the module directory as the working directory.
  */
 class ResourceAndPrivacyGuardTest {
@@ -63,9 +64,23 @@ class ResourceAndPrivacyGuardTest {
         assertTrue("Only ${(share * 100).toInt()}% of values-gu strings use Gujarati script", share > 0.9)
     }
 
-    @Test fun previewBuildRequestsNoNetworkPermission() {
+    @Test fun internetIsTheOnlyPermission() {
         val manifest = File("src/main/AndroidManifest.xml").readText()
-        assertFalse(manifest.contains("android.permission.INTERNET"))
+        val permissions = Regex("uses-permission[^>]*android:name=\"([^\"]+)\"").findAll(manifest).map { it.groupValues[1] }.toList()
+        assertEquals(listOf("android.permission.INTERNET"), permissions)
+    }
+
+    @Test fun backendRequiresHttpsAndAKey() {
+        assertFalse(BackendConfig("", "").isConfigured)
+        assertFalse(BackendConfig("https://example.supabase.co", "").isConfigured)
+        assertFalse(BackendConfig("http://example.supabase.co", "key").isConfigured)
+        assertTrue(BackendConfig("https://example.supabase.co", "key").isConfigured)
+        assertTrue(BackendConfig("http://127.0.0.1:54321", "key").isConfigured)
+    }
+
+    @Test fun backupsStayDisabled() {
+        val manifest = File("src/main/AndroidManifest.xml").readText()
+        assertTrue(manifest.contains("android:allowBackup=\"false\""))
     }
 
     @Test fun previewRepositoriesHoldNoInventedRecords() = runBlocking {

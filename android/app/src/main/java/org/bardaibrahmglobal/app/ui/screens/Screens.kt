@@ -267,9 +267,10 @@ fun ProfileScreen(
     language: AppLanguage,
     onLanguageSelected: (AppLanguage) -> Unit,
     versionName: String,
+    account: @Composable () -> Unit,
 ) = ScreenColumn {
     ScreenTitle(stringResource(R.string.profile_title))
-    Text(stringResource(R.string.profile_not_signed_in), color = MaterialTheme.colorScheme.onSurfaceVariant)
+    account()
     Text(stringResource(R.string.profile_language), style = MaterialTheme.typography.titleMedium, color = Navy)
     LanguageSelector(selected = language, onSelect = onLanguageSelected)
     HorizontalDivider()
