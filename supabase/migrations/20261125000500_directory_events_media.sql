@@ -13,8 +13,6 @@
 --   * Photo bytes live in object storage; the database holds the storage key and limits
 --     (JPEG/WebP, max 2 MB, max 2560 px). Signed URLs are issued by the API layer, never public.
 --   * Participant names are visible only to the organising chapter's admins/secretaries.
-begin;
-
 create type app.event_status as enum ('draft', 'published', 'cancelled');
 create type app.rsvp_status as enum ('going', 'maybe', 'not_going', 'waitlisted');
 create type app.media_status as enum ('visible', 'removed');
@@ -412,6 +410,10 @@ begin
     if not found or not app.has_role(me, 'chapter_admin', e.chapter_id) then
         raise exception 'only an admin of the event''s chapter can upload photos' using errcode = '42501';
     end if;
+    -- Object path must sit under this event's folder: storage policies rely on it.
+    if p_storage_key not like 'events/' || e.id::text || '/%' then
+        raise exception 'storage key must be events/<event id>/<file>' using errcode = '22023';
+    end if;
     if p_bytes > app.setting_int('max_photo_bytes')
        or greatest(p_width, p_height) > app.setting_int('max_photo_pixels') then
         raise exception 'photo must be compressed first (max 2 MB, 2560 px)' using errcode = '22023';
@@ -484,5 +486,3 @@ end $$;
 
 revoke all on all functions in schema api from public;
 grant execute on all functions in schema api to bbg_api;
-
-commit;

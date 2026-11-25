@@ -14,8 +14,6 @@
 --     accepted. Living minors are always masked except to their owner. Directory
 --     membership never grants access to anyone's tree.
 --   * Records are never merged automatically; a reviewer approves each merge.
-begin;
-
 create type app.rel_kind as enum ('parent', 'spouse');
 create type app.parent_type as enum ('biological', 'adoptive', 'step', 'guardian', 'foster', 'unknown');
 create type app.link_status as enum ('self_reported', 'pending', 'confirmed', 'disputed', 'retracted');
@@ -428,9 +426,10 @@ begin
     if not r.is_living or app.is_minor(r) then
         raise exception 'only living adults can claim their record' using errcode = '55000';
     end if;
-    tok := encode(public.gen_random_bytes(24), 'hex');
+    -- 244 random bits from PostgreSQL's strong random source (no extension needed).
+    tok := replace(gen_random_uuid()::text, '-', '') || replace(gen_random_uuid()::text, '-', '');
     insert into claim_invites (token_hash, person_id, created_by, expires_at)
-    values (encode(public.digest(tok, 'sha256'), 'hex'), p_person, me, now() + interval '14 days');
+    values (encode(sha256(convert_to(tok, 'UTF8')), 'hex'), p_person, me, now() + interval '14 days');
     perform app.audit('create_claim_invite', 'person', p_person, null);
     return tok;
 end $$;
@@ -442,7 +441,7 @@ begin
     if app.my_person(me) is not null then
         raise exception 'your account already has a person record' using errcode = '55000';
     end if;
-    select * into ci from claim_invites where token_hash = encode(public.digest(coalesce(p_token, ''), 'sha256'), 'hex') for update;
+    select * into ci from claim_invites where token_hash = encode(sha256(convert_to(coalesce(p_token, ''), 'UTF8')), 'hex') for update;
     if not found or ci.used_at is not null or ci.expires_at < now() then
         raise exception 'invitation is invalid or expired' using errcode = 'P0002';
     end if;
@@ -569,5 +568,3 @@ end $$;
 
 revoke all on all functions in schema api from public;
 grant execute on all functions in schema api to bbg_api;
-
-commit;

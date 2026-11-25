@@ -10,10 +10,6 @@
 --   * Email address is contact data, never identity: accounts are keyed by the auth
 --     provider's subject id; persons get an immutable member code.
 
-begin;
-
-create extension if not exists pgcrypto;
-
 create schema if not exists app;   -- tables and internal helpers
 create schema if not exists api;   -- the only surface exposed to bbg_api
 
@@ -454,5 +450,3 @@ end $$;
 
 revoke all on all functions in schema api from public;
 grant execute on all functions in schema api to bbg_api;
-
-commit;

@@ -213,25 +213,27 @@ insert into t.ids select 'ev_photo', api.create_event(t.id('ch_a'), 'Annual day'
 select api.set_event_status(t.id('ev_photo'), 'published');
 select t.as_user('sec_a');
 select t.raises('secretary (not admin) cannot upload photos',
-    $$select api.register_event_photo(t.id('ev_photo'), 'events/a/p1.webp', 'image/webp', 300000, 1600, 1200, null, null)$$, '42501');
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/p1.webp', 'image/webp', 300000, 1600, 1200, null, null)$$, '42501');
 select t.as_user('adm_b');
 select t.raises('admin of another chapter cannot upload',
-    $$select api.register_event_photo(t.id('ev_photo'), 'events/a/p1.webp', 'image/webp', 300000, 1600, 1200, null, null)$$, '42501');
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/p1.webp', 'image/webp', 300000, 1600, 1200, null, null)$$, '42501');
 select t.as_user('adm_a');
 select t.raises('uncompressed (oversized) photo refused',
-    $$select api.register_event_photo(t.id('ev_photo'), 'events/a/big.jpg', 'image/jpeg', 9000000, 1600, 1200, null, null)$$, '22023');
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/big.jpg', 'image/jpeg', 9000000, 1600, 1200, null, null)$$, '22023');
 select t.raises('over-large dimensions refused',
-    $$select api.register_event_photo(t.id('ev_photo'), 'events/a/huge.jpg', 'image/jpeg', 900000, 6000, 4000, null, null)$$, '22023');
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/huge.jpg', 'image/jpeg', 900000, 6000, 4000, null, null)$$, '22023');
 select t.raises('only JPEG/WebP accepted',
-    $$select api.register_event_photo(t.id('ev_photo'), 'events/a/p.png', 'image/png', 300000, 1600, 1200, null, null)$$, '23514');
-select t.raises('unsafe storage key refused',
-    $$select api.register_event_photo(t.id('ev_photo'), '../../etc/passwd', 'image/jpeg', 300000, 1600, 1200, null, null)$$, '23514');
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/p.png', 'image/png', 300000, 1600, 1200, null, null)$$, '23514');
+select t.raises('path outside the event folder refused',
+    $$select api.register_event_photo(t.id('ev_photo'), '../../etc/passwd', 'image/jpeg', 300000, 1600, 1200, null, null)$$, '22023');
+select t.raises('storage key must be inside this event''s folder',
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/someone-else/p9.webp', 'image/webp', 300000, 1600, 1200, null, null)$$, '22023');
 select t.raises('storage key cannot start at the root',
-    $$select api.register_event_photo(t.id('ev_photo'), '/etc/a/b.jpg', 'image/jpeg', 300000, 1600, 1200, null, null)$$, '23514');
+    $$select api.register_event_photo(t.id('ev_photo'), '/etc/a/b.jpg', 'image/jpeg', 300000, 1600, 1200, null, null)$$, '22023');
 select t.raises('storage key cannot climb directories mid-path',
-    $$select api.register_event_photo(t.id('ev_photo'), 'events/../secrets/x.jpg', 'image/jpeg', 300000, 1600, 1200, null, null)$$, '23514');
-insert into t.ids select 'ph1', api.register_event_photo(t.id('ev_photo'), 'events/a/p1.webp', 'image/webp', 300000, 1600, 1200, 'Prize giving', 'ઇનામ વિતરણ');
-insert into t.ids select 'ph2', api.register_event_photo(t.id('ev_photo'), 'events/a/p2.webp', 'image/webp', 250000, 1600, 1200, null, null);
+    $$select api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/../../secrets/x.jpg', 'image/jpeg', 300000, 1600, 1200, null, null)$$, '23514');
+insert into t.ids select 'ph1', api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/p1.webp', 'image/webp', 300000, 1600, 1200, 'Prize giving', 'ઇનામ વિતરણ');
+insert into t.ids select 'ph2', api.register_event_photo(t.id('ev_photo'), 'events/' || t.id('ev_photo') || '/p2.webp', 'image/webp', 250000, 1600, 1200, null, null);
 
 select t.as_user('bob');
 select t.ok('members see event photos (keys for signed URLs only)', (select count(*) = 2 from api.event_photos(t.id('ev_photo'))));

@@ -3,9 +3,9 @@ name: Database security tests
 on:
   push:
     branches: [main, "feature/**"]
-    paths: ["backend/**", ".github/workflows/backend.yml"]
+    paths: ["backend/**", "supabase/migrations/**", ".github/workflows/backend.yml"]
   pull_request:
-    paths: ["backend/**", ".github/workflows/backend.yml"]
+    paths: ["backend/**", "supabase/migrations/**", ".github/workflows/backend.yml"]
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 15
     services:
       postgres:
-        image: postgres:16
+        image: postgres:17
         env:
           # Throwaway CI-only database; not a real secret.
           POSTGRES_PASSWORD: ci-only-throwaway

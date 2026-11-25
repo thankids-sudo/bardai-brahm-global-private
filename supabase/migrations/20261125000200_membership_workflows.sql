@@ -5,8 +5,6 @@
 --   * secretary review queue with possible-duplicate counts (suggestions only, never merges)
 --   * chapter list for routing, including the temporary global intake chapter
 --   * account disable/enable by a global administrator
-begin;
-
 create type app.appeal_status as enum ('open', 'upheld', 'dismissed');
 
 create table app.appeals (
@@ -253,5 +251,3 @@ end $$;
 
 revoke all on all functions in schema api from public;
 grant execute on all functions in schema api to bbg_api;
-
-commit;

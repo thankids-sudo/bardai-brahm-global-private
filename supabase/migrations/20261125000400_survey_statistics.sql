@@ -13,12 +13,8 @@
 --   * Statistics return counts only. Counts from 1 to (minimum cell size - 1) are suppressed,
 --     plus one extra cell when a single suppressed cell could be recovered by subtraction.
 --     Country filters are refused when either the filtered group or the rest of the world is small.
+-- Enum values 'survey' and 'planning_analyst' are added in 20261125000390_enum_additions.sql.
 
--- Enum additions must be committed before use, so they run outside the main transaction.
-alter type app.consent_purpose add value if not exists 'survey';
-alter type app.role_kind add value if not exists 'planning_analyst';
-
-begin;
 
 create type app.survey_scope as enum ('individual', 'household');
 create type app.question_kind as enum ('single_choice', 'multi_choice', 'integer', 'year', 'income_band');
@@ -590,5 +586,3 @@ end $$;
 
 revoke all on all functions in schema api from public;
 grant execute on all functions in schema api to bbg_api;
-
-commit;
