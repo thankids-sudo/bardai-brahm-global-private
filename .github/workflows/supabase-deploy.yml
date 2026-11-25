@@ -1,0 +1,51 @@
+name: Deploy database to Supabase (production)
+
+# Manual only. Runs from main, requires typing DEPLOY, and uses the protected GitHub environment
+# "production" (set a required reviewer there). Secrets live only in that environment.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type DEPLOY to apply pending migrations to the production Supabase project
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main' && inputs.confirm == 'DEPLOY'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the production secrets are configured
+        run: |
+          missing=0
+          for v in SUPABASE_ACCESS_TOKEN SUPABASE_DB_PASSWORD SUPABASE_PROJECT_ID; do
+            if [ -z "${!v}" ]; then echo "::error::Secret $v is not set in the production environment"; missing=1; fi
+          done
+          exit $missing
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link project
+        run: supabase link --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Show migrations that will be applied
+        run: supabase db push --dry-run
+
+      - name: Apply migrations
+        run: supabase db push --yes

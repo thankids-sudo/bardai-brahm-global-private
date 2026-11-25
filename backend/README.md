@@ -1,8 +1,10 @@
-# Backend: database layer (M2)
+# Backend: database layer
 
-Plain PostgreSQL 16, written to work with either backend option in
-`docs/BACKEND_OPTIONS.md` (Supabase or our own server). The backend vendor is **not yet chosen**;
-nothing here is deployed and no real data exists.
+**Backend: Supabase Pro, Mumbai (owner decision, 25 Nov 2026).** Migrations live in
+`supabase/migrations` and are plain PostgreSQL (17), so they also run on any PostgreSQL. The last
+migration adapts them to Supabase (identity from the Supabase JWT, accounts synced from
+`auth.users`, private photo bucket with storage policies). Nothing is deployed yet and no real
+data exists. Owner setup: `docs/SUPABASE_SETUP.md`.
 
 ## Security model
 
@@ -117,9 +119,11 @@ apply ──► pending ──► approved ──► (suspended ⇄ approved)
 ## Layout
 
 ```text
-db/migrations/   numbered SQL migrations, applied in order
+../supabase/migrations/  timestamped SQL migrations (Supabase CLI layout), applied in order
+../supabase/config.toml  local Supabase settings (exposed schema api only, email confirmation on)
 db/tests/        security tests (synthetic data only); _harness.sql/_report.sql are shared
-db/run_tests.sh  per test file: fresh throwaway database, apply migrations, run, drop
+db/run_tests.sh  plain mode: fresh database per test file; SUPABASE_LOCAL=1: rolled-back tests on local Supabase
+e2e/supabase_smoke.sh  HTTP end-to-end check against a local Supabase stack
 ```
 
 ## Running the tests
@@ -130,7 +134,8 @@ docker run --rm -d -p 5432:5432 -e POSTGRES_PASSWORD=dev --name bbg-pg postgres:
 PGHOST=localhost PGPORT=5432 PGUSER=postgres PGPASSWORD=dev backend/db/run_tests.sh
 ```
 
-Never point `run_tests.sh` at staging or production. CI runs it on every change under `backend/`.
+Never point `run_tests.sh` at staging or production. CI runs it on plain PostgreSQL 17 and on a
+full local Supabase stack (`supabase start`) on every change.
 
 ## Not done yet
 API server and sign-in integration (depends on the backend choice), the admin web portal,

@@ -96,3 +96,16 @@ API/sign-in adapter on top of the tested database layer.
 All five migrations and 307 tests are on branch `feature/m2-backend-options`. Every remaining
 item (sign-in, API server, app and admin screens, notifications, storage) needs the owner's
 backend decision (`docs/BACKEND_OPTIONS.md`).
+
+## Backend: Supabase (owner chose option A, 25 Nov 2026)
+
+| Item | State |
+|---|---|
+| Migrations moved to `supabase/migrations` (CLI layout); pgcrypto replaced by built-ins; enum additions split | Done |
+| Adapter migration: JWT identity (`auth.uid()`), API roles must carry a JWT, accounts synced from `auth.users` (deletion disables), `api` schema granted to `authenticated` only, private `event-photos` bucket with upload/read/delete policies | Implemented |
+| CI on a real local Supabase stack | **Passed: run 45577221236 — 333 database tests (incl. 25 Supabase-only) and 11/11 HTTP end-to-end checks** |
+| Bug found on Supabase and fixed | Non-superuser migration owner could not assume `bbg_api` (PostgreSQL 16+ role rules) |
+| Guarded production deploy workflow (manual, main only, type DEPLOY, protected environment) | Written, not run: needs owner's project and secrets |
+| Owner checklist | `docs/SUPABASE_SETUP.md` |
+| **Blocked on owner** | Supabase account + Pro plan + Mumbai project; GitHub `production` environment and secrets; domain and email provider for custom SMTP |
+| Android sign-in / apply / approve screens | Next slice |

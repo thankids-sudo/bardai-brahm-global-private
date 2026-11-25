@@ -44,7 +44,8 @@ docs/               Brief, status
 .github/workflows/  CI: tests, lint, debug APK artifact
 ```
 
-`backend/` and `admin-web/` will be added with M2.
+`supabase/` holds the database migrations and local Supabase config; `backend/` holds the
+database tests. `admin-web/` comes later. Backend setup: `docs/SUPABASE_SETUP.md`.
 
 ## Security rules
 
