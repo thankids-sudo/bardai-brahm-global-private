@@ -15,7 +15,13 @@ The Foundation is being established; legal registration is not yet complete.
 
 Details: `docs/PROJECT_STATUS.md`. Full requirements: `docs/IMPLEMENTATION_BRIEF.md`.
 
-## Getting the test APK
+## Installing on a phone (easiest)
+
+Open **Releases** on the repository page (or https://github.com/thankids-sudo/bardai-brahm-global-private/releases)
+on your Android phone, tap the newest **Phone preview**, download the `.apk`, open it and allow
+"Install unknown apps" when asked. No GitHub account needed. Android 8.0 or newer.
+
+## Getting the test APK from a build
 
 1. Open the repository's **Actions** tab → **Android debug build** → latest green run.
 2. Download the `bardai-brahm-global-debug-N` artifact (zip) and extract the `.apk`.
