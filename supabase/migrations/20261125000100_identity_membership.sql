@@ -17,6 +17,11 @@ do $$ begin
     if not exists (select 1 from pg_roles where rolname = 'bbg_api') then
         create role bbg_api nologin;
     end if;
+    -- PostgreSQL 16+: a non-superuser creator (e.g. Supabase's postgres) is not automatically a
+    -- member; membership lets the owner run checks as bbg_api. Grants no extra rights to anyone.
+    if not (select rolsuper from pg_roles where rolname = current_user) then
+        execute format('grant bbg_api to %I', current_user);
+    end if;
 end $$;
 
 revoke all on schema app from public;
