@@ -7,7 +7,9 @@ Keep the status file updated after every change.
 - Every user-facing string goes in both `values/strings.xml` and `values-gu/strings.xml`;
   `ResourceAndPrivacyGuardTest` enforces parity.
 - Never show invented membership counts, live data, or working login/chat/video placeholders.
-- Do not add the INTERNET permission or collect real data before M2 security is implemented.
+- Internet is the only permission. Network calls go only to the configured Supabase backend;
+  without `SUPABASE_URL`/`SUPABASE_PUBLISHABLE_KEY` at build time the app stays offline (preview).
+- Never log tokens, passwords or personal data. The refresh token is stored only encrypted (Android Keystore).
 - Authorisation is enforced server-side; never grant roles in client code
   (including for the designated global admin email).
 - No secrets, keystores, member data or production dumps in git.

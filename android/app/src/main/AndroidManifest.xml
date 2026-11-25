@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- M1 preview: no INTERNET permission. The app makes no network calls and collects no data. -->
+    <!-- Network is used only for sign-in and membership calls to the Foundation's Supabase backend,
+         and only when the build is configured with a backend address (otherwise offline preview). -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="false"
@@ -18,10 +20,18 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.BardaiBrahm">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Email confirmation link returns here: org.bardaibrahmglobal.app://auth-callback#... -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="org.bardaibrahmglobal.app" android:host="auth-callback" />
             </intent-filter>
         </activity>
 

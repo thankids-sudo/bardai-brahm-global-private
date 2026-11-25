@@ -66,12 +66,14 @@ fun BardaiApp(
     chapterRepository: ChapterRepository,
     eventRepository: EventRepository,
     versionName: String,
+    backendConnected: Boolean,
+    account: @Composable () -> Unit,
 ) {
     var welcomed by rememberSaveable { mutableStateOf(false) }
     if (!welcomed) {
         Scaffold { padding ->
             Column(Modifier.padding(padding)) {
-                PreviewBanner()
+                PreviewBanner(connected = backendConnected)
                 WelcomeScreen(language, onLanguageSelected) { welcomed = true }
             }
         }
@@ -134,7 +136,7 @@ fun BardaiApp(
         },
     ) { padding ->
         Column(Modifier.padding(padding)) {
-            PreviewBanner()
+            PreviewBanner(connected = backendConnected)
             NavHost(navController = navController, startDestination = Destination.HOME.route) {
                 composable(Destination.HOME.route) { HomeScreen(onOpenSurvey = { navigate(Destination.SURVEY) }) }
                 composable(Destination.FAMILY.route) { FamilyScreen() }
@@ -142,7 +144,7 @@ fun BardaiApp(
                 composable(Destination.EVENTS.route) { EventsScreen(eventRepository) }
                 composable(Destination.SURVEY.route) { SurveyScreen() }
                 composable(Destination.PROFILE.route) {
-                    ProfileScreen(language, onLanguageSelected, versionName)
+                    ProfileScreen(language, onLanguageSelected, versionName, account)
                 }
             }
         }

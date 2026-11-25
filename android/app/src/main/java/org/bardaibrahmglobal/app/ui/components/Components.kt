@@ -40,9 +40,9 @@ import org.bardaibrahmglobal.app.ui.theme.Navy
 
 /** Persistent strip that makes the preview status obvious on every screen. */
 @Composable
-fun PreviewBanner(modifier: Modifier = Modifier) {
+fun PreviewBanner(modifier: Modifier = Modifier, connected: Boolean = false) {
     Text(
-        text = stringResource(R.string.preview_banner),
+        text = stringResource(if (connected) R.string.preview_banner_connected else R.string.preview_banner),
         style = MaterialTheme.typography.labelMedium,
         color = Navy,
         textAlign = TextAlign.Center,
